@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consultas</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <!-- CSS de Bootstrap -->
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
+    
+</head>
+<body>
+    <div class="dashboard-container">
+        <h1>Busquedas de Enfermedades por Codigos</h1>
+        <div>
+            
+            <button onclick="mostrarDatos('SECCION')">Mostrar Secciones</button>
+            <button onclick="mostrarDatos('ENFERMEDAD')">Mostrar Enfermedades</button>
+            
+
+        </div>
+        <div id="busqueda">
+            <input type="text" id="busquedaEnfermedad" placeholder="Buscar Enfermedad">
+            <button onclick="buscar()">Buscar por Codigo</button>
+            <button onclick="buscarNombre()">Buscar por Nombre</button>
+        <!-- </div>
+        <div id="busqueda_excluyes"> -->
+            <!-- <input type="text" id="busquedaEnfermedadExcluyes" placeholder="Buscar Enfermedad"> -->
+            <button onclick="buscarEnfermedad()">Buscar Excluyes</button>
+            
+        </div>
+        <div id="resultado">
+            
+            
+
+        </div>
+        <!-- <button id="nextPageButton"   onclick="SiguientePagina()" disabled>Siguiente página</button> -->
+        <a href="{{ url_for('logout') }}">Cerrar sesión</a>
+    </div>
+
+    
+
+    <script>
+
+
+            
+
+        function generatePagination(totalPages, currentPage) {
+            
+            let paginationHTML = '';
+
+            for (let i = 1; i <= totalPages; i++) {
+                paginationHTML += `<li class="page-item ${i === currentPage ? 'active' : ''}">
+                    <a class="page-link" href="#" data-page="${i}">${i}</a>
+                </li>`;
+            }
+
+            $('#pagination-container').html(paginationHTML);
+
+
+        }
+        
+
+
+
+
+        function mostrarDatos(opcion) {
+        fetch(`/datos/${opcion}`)
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("resultado").innerHTML = data;
+            });
+            // if (opcion == "ENFERMEDAD"){
+            //     document.getElementById("nextPageButton").disabled = false;
+            // }
+            // document.getElementById("resultado").innerHTML = "hola esto ha salido bien:"+ opcion;
+        }
+
+        function buscar() {
+            var enfermedad = document.getElementById("busquedaEnfermedad").value;
+            fetch(`/busqueda?enfermedad=${enfermedad}`)
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("resultado").innerHTML = data;
+            });
+        }
+
+        function buscarNombre() {
+            var enfermedad = document.getElementById("busquedaEnfermedad").value;
+            fetch(`/busqueda?nombreenfermedad=${enfermedad}`)
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("resultado").innerHTML = data;
+            });
+        }
+
+        function buscarCodigo(boton) {
+            var enfermedad = boton.value;
+            fetch(`/busqueda?enfermedad=${enfermedad}`)
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("resultado").innerHTML = data;
+            });
+        }
+
+        
+
+        function buscarEnfermedad() {
+            var texto = document.getElementById("busquedaEnfermedad").value;
+            fetch(`/busqueda?excluyeenfermedad=${texto}`)
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("resultado").innerHTML = data;
+            });
+        }
+
+        
+        function linkNavegacon(link) {
+            var page = link.value;
+            // console.log('Valor de page:', page);
+            fetch(`/get_table?page=${page}`)
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("resultado").innerHTML = data;
+            });
+        }
+
+
+
+
+        
+    </script>
+</body>
+</html>
+

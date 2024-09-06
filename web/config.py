@@ -1,0 +1,5 @@
+import os
+MONGODB_URL = os.getenv('MONGO_URI')
+# MONGODB_URL = "172.17.0.2"
+DATABASE_NAME = "CIE10"
+PUERTO = 27017

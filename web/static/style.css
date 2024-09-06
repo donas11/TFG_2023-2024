@@ -1,0 +1,130 @@
+/* static/style.css */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.login-container, .dashboard-container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+}
+
+input[type="text"], input[type="password"], button {
+    display: block;
+    margin-bottom: 10px;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    background-color: #06876d;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:disabled {
+    background-color: #8f8c8c; /* Color de fondo gris */
+    color: #999999; /* Color del texto gris */
+    cursor: not-allowed; /* Cursor de no permitido */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table, th, td {
+    border: 1px solid #ccc;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+}
+
+a {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Estilos para el banner de aviso */
+#cookie-banner {
+    background-color: #a6cec8;
+    color: #092e0a;
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+    align-self: center;
+    position: absolute;
+    bottom: 0;
+}
+
+
+/* Estilo para el botón con un ID="Codigo" */
+#Codigo {
+    background-color: transparent;
+    border: none;
+    color: #007bff;
+    cursor: pointer;
+    padding: 0;
+    text-decoration: underline;
+}
+
+/* Cambia el estilo al pasar el ratón sobre el botón */
+#Codigo:hover {
+    color: #0056b3;
+}
+
+
+
+
+/* Estilo general para la barra de navegación de paginación */
+.pagination {
+    display: flex; /* Usar flexbox para mostrar en línea */
+    list-style: none; /* Quitar los puntos de lista */
+    padding: 0; /* Quitar el padding */
+    margin: 0; /* Quitar el margen */
+}
+
+/* Estilo para cada ítem de la paginación */
+.pagination .page-item {
+    margin-right: 5px; /* Espacio entre los ítems */
+}
+
+/* Estilo para el enlace de la paginación */
+.pagination .page-link {
+    display: block; /* Asegurar que el padding sea aplicable */
+    padding: 10px 15px; /* Espaciado interno del enlace */
+    color: #007bff; /* Color del texto */
+    text-decoration: none; /* Quitar el subrayado de los enlaces */
+    border: 1px solid #dee2e6; /* Borde del enlace */
+    border-radius: 4px; /* Bordes redondeados */
+}
+
+/* Estilo para el enlace activo */
+.pagination .page-item.active .page-link {
+    background-color: #007bff; /* Color de fondo del enlace activo */
+    color: #fff; /* Color del texto del enlace activo */
+    border-color: #007bff; /* Borde del enlace activo */
+}
+
+/* Estilo para el enlace en hover */
+.pagination .page-link:hover {
+    background-color: #e2e6ea; /* Color de fondo al pasar el ratón */
+}
+
+
+.hidden-link {
+    display: none;
+}

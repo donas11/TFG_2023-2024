@@ -1,0 +1,6 @@
+Flask
+flask-sslify
+Flask-Session
+pymongo
+pandas
+numpy

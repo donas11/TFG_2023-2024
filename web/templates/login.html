@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Iniciar sesión</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+   
+    
+    <div class="login-container">
+        <h1>Iniciar sesión</h1>
+        <form method="POST">
+            <input type="text" name="usuario" placeholder="Usuario" required>
+            <input type="password" name="clave" placeholder="Contraseña" required>
+            <button type="submit">Ingresar</button>
+        </form>    
+    </div>
+    <div id="cookie-banner">
+        Este sitio web utiliza cookie para mejorar la experiencia del usuario. <a href="/politicacookies">Más información</a>.
+        <button onclick="aceptarCookies()">Aceptar</button>
+    </div>
+</body>
+<script>
+    function aceptarCookies() {
+        document.getElementById("cookie-banner").style.display = "none";
+    }
+</script>
+</html>
+
