@@ -1,0 +1,35 @@
+
+services:
+  app:
+    build: 
+      context: ./app
+    depends_on:
+      - mongo
+    environment:
+      - MONGO_URI=mongodb://mongo
+    volumes:
+      - ./app:/app  # Montar el código fuente de la app
+  web:
+    build:
+      context: ./web
+    ports:
+      - "5000:5000"
+    depends_on:
+      - mongo
+    environment:
+      - FLASK_ENV=production
+      - MONGO_URI=mongodb://mongo
+    volumes:
+      - ./web:/app  # Montar el código fuente de la app
+  mongo:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+      # - "27018:27018"
+      # - "27019:27019"
+    volumes:
+      - ./mongo-data:/data/db
+      - ./mongo-init/:/docker-entrypoint-initdb.d/  # Montar scripts de inicialización
+
+# volumes:
+#   mongo-data:
