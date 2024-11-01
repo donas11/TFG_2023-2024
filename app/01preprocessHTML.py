@@ -14,8 +14,9 @@ start_time = time.time()
 ###            PATRONES
 ###
 # Enfermedades
-patron_codigo0 =  r'(?!.*>[A-Z][A-Z][A-Z]<)(>[A-Z]([0-9]|[A-Z])([0-9]|[A-Z])<)'
-patron_codigo0_2 =r'>[A-Z][0-9][0-9]<'
+# patron_codigo0 =  r'(?!.*>[A-Z][A-Z][A-Z]<)(>[A-Z]([0-9]|[A-Z])([0-9]|[A-Z])<)'
+patron_codigo0 =  r'>[A-Z][A-Z][A-Z]<)(>[A-Z]([0-9]|[A-Z])([0-9]|[A-Z])<)'
+# patron_codigo0_2 =r'>[A-Z][0-9][0-9]<'
 patron_codigo1 = r'>[A-Z]([0-9]|[A-Z])([0-9]|[A-Z])\.([0-9]|[A-Z])<'
 patron_codigo2 = r'>[A-Z]([0-9]|[A-Z])([0-9]|[A-Z])\.([0-9]|[A-Z])([A-Z]|[0-9])([0-9]|[A-Z])*<'
 
@@ -982,34 +983,34 @@ with open(ruta_archivo, 'r') as file:
                 
                             pos_acummulado+=coinciden[2]-tam_letras_ENF
                     es_actualizacion=False
-            coincidencias_nivel0 = [[coincidencia.start(),coincidencia.end(),line[coincidencia.start():coincidencia.end()]] for coincidencia in re.finditer(patron_codigo0_2, str(line) )]
-            if coincidencias_nivel0:
-                for coincidencia_nivel0 in coincidencias_nivel0:
-                    pos_busqueda_inicio= coincidencia_nivel0[0]-tam_despl_class-pos_acummulado-2*tam_letras_class
-                    pos_busqueda_final= coincidencia_nivel0[1]-pos_acummulado
-                    es_actualizacion=re.search(patron_actualizacion, str(line[pos_busqueda_inicio:pos_busqueda_final]))
-                    if es_actualizacion:
-                        pos_busqueda_inicio+=tam_despl_class
-                        # import ipdb; ipdb.set_trace();    
-                    coincidencias_nivel0_class = [[coincidencia.start()+7,coincidencia.end()-1,(coincidencia.end()-1)-(coincidencia.start()+7),line] for coincidencia in re.finditer(patron_class, str(line[pos_busqueda_inicio:pos_busqueda_final]) )]
-                    if coincidencias_nivel0_class:
-                        for coinciden in coincidencias_nivel0_class:
-                            #print("Modificando Nivel 0......")
-                            inicio = pos_busqueda_inicio+coinciden[0]
-                            final =  pos_busqueda_inicio+coinciden[1]
-                            texto = coinciden[3]
+            # coincidencias_nivel0 = [[coincidencia.start(),coincidencia.end(),line[coincidencia.start():coincidencia.end()]] for coincidencia in re.finditer(patron_codigo0_2, str(line) )]
+            # if coincidencias_nivel0:
+            #     for coincidencia_nivel0 in coincidencias_nivel0:
+            #         pos_busqueda_inicio= coincidencia_nivel0[0]-tam_despl_class-pos_acummulado-2*tam_letras_class
+            #         pos_busqueda_final= coincidencia_nivel0[1]-pos_acummulado
+            #         es_actualizacion=re.search(patron_actualizacion, str(line[pos_busqueda_inicio:pos_busqueda_final]))
+            #         if es_actualizacion:
+            #             pos_busqueda_inicio+=tam_despl_class
+            #             # import ipdb; ipdb.set_trace();    
+            #         coincidencias_nivel0_class = [[coincidencia.start()+7,coincidencia.end()-1,(coincidencia.end()-1)-(coincidencia.start()+7),line] for coincidencia in re.finditer(patron_class, str(line[pos_busqueda_inicio:pos_busqueda_final]) )]
+            #         if coincidencias_nivel0_class:
+            #             for coinciden in coincidencias_nivel0_class:
+            #                 #print("Modificando Nivel 0......")
+            #                 inicio = pos_busqueda_inicio+coinciden[0]
+            #                 final =  pos_busqueda_inicio+coinciden[1]
+            #                 texto = coinciden[3]
                             
-                            if es_actualizacion:
-                                modificacion_class= texto[:inicio]+ "Enfermedad_nivel0-actualizacion" + texto[final:] 
-                                tam_letras_ENF=31
-                            else:
-                                modificacion_class= texto[:inicio]+ "Enfermedad_nivel0" + texto[final:] 
-                                tam_letras_ENF=17
-                            coinciden[3]= modificacion_class
-                            line= coinciden[3]
+            #                 if es_actualizacion:
+            #                     modificacion_class= texto[:inicio]+ "Enfermedad_nivel0-actualizacion" + texto[final:] 
+            #                     tam_letras_ENF=31
+            #                 else:
+            #                     modificacion_class= texto[:inicio]+ "Enfermedad_nivel0" + texto[final:] 
+            #                     tam_letras_ENF=17
+            #                 coinciden[3]= modificacion_class
+            #                 line= coinciden[3]
                 
-                            pos_acummulado+=coinciden[2]-tam_letras_ENF
-                    es_actualizacion=False
+            #                 pos_acummulado+=coinciden[2]-tam_letras_ENF
+            #         es_actualizacion=False
 
             pos_acummulado=0
             num_linea+=1
